@@ -17,24 +17,34 @@ def infer_breach(value, temperature_range):
 
 
 def classify_temperature_breach(cooling_type, temperature_inc):
-    """classify the temperature breach based on cooling type and temperature threshold.
+    """Classify the temperature breach based on cooling type and temperature threshold.
 
-    :param cooling_type: type of cooling
+    :param cooling_type: Type of cooling
     :type cooling_type: string
-    :param temperature_inc: temperature threshold
+    :param temperature_inc: Temperature threshold
     :type temperature_inc: int
-    :return: breach
+    :return: Breach
     :rtype: string
     """
-    temperature_range = list()
-    if cooling_type == 'PASSIVE_COOLING':
-        temperature_range.extend([0,35])
-    elif cooling_type == 'MED_ACTIVE_COOLING':
-        temperature_range.extend([0,40])
-    elif cooling_type == 'HI_ACTIVE_COOLING':
-        temperature_range.extend([0,45])  
+    temperature_range = get_temperature_range(cooling_type)
     return infer_breach(temperature_inc, temperature_range)
 
+def get_temperature_range(cooling_type):
+    """Get the temperature range based on the cooling type.
+
+    :param cooling_type: Type of cooling
+    :type cooling_type: string
+    :return: Temperature range
+    :rtype: list
+    """
+    if cooling_type == 'PASSIVE_COOLING':
+        return [0, 35]
+    elif cooling_type == 'MED_ACTIVE_COOLING':
+        return [0, 40]
+    elif cooling_type == 'HI_ACTIVE_COOLING':
+        return [0, 45]
+    else:
+        raise ValueError("Invalid cooling type")
 
 def check_and_alert(alert_target, battery_char, temperature_inc):
     """Send mail to controller or email id based on alert mechanism.
