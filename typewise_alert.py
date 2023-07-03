@@ -43,8 +43,6 @@ def get_temperature_range(cooling_type):
         return [0, 40]
     elif cooling_type == 'HI_ACTIVE_COOLING':
         return [0, 45]
-    else:
-        raise ValueError("Invalid cooling type")
 
 def check_and_alert(alert_target, battery_char, temperature_inc):
     """Send mail to controller or email id based on alert mechanism.
