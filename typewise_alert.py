@@ -41,7 +41,7 @@ def get_temperature_range(cooling_type):
         return [0, 35]
     elif cooling_type == 'MED_ACTIVE_COOLING':
         return [0, 40]
-    elif cooling_type == 'HI_ACTIVE_COOLING':
+    else:
         return [0, 45]
 
 def check_and_alert(alert_target, battery_char, temperature_inc):
