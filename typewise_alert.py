@@ -39,10 +39,9 @@ def get_temperature_range(cooling_type):
     """
     if cooling_type == 'PASSIVE_COOLING':
         return [0, 35]
-    elif cooling_type == 'MED_ACTIVE_COOLING':
+    if cooling_type == 'MED_ACTIVE_COOLING':
         return [0, 40]
-    else:
-        return [0, 45]
+    return [0, 45]
 
 def check_and_alert(alert_target, battery_char, temperature_inc):
     """Send mail to controller or email id based on alert mechanism.
